@@ -4,6 +4,10 @@ class Transaction {
     this.amount = amount;
     this.date = date;
   }
+
+  isDebit() {
+    return this.type === "debit";
+  }
 }
 
 module.exports = Transaction;
