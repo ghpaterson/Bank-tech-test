@@ -1,3 +1,5 @@
+const Transaction = require("./transaction");
+
 describe("Creates a transaction object", () => {
   it("deposit, amount and transaction date", () => {
     const trans = new Transaction("credit", 1000, "10-01-2023");
