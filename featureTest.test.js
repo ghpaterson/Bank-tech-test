@@ -16,7 +16,7 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     const trans = new Transaction("credit", 1000, "10-01-2023");
     account.addTransaction(trans);
     expect(statement.printStatement()).toEqual(
-      "date || credit || debit || balance\n10-01-2023 || 1000 ||  || 1000"
+      "date || credit || debit || balance\n10-01-2023 || 1000.00 ||  || 1000.00"
     );
   });
 
@@ -26,7 +26,7 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     account.addTransaction(transOne);
     account.addTransaction(transTwo);
     expect(statement.printStatement()).toEqual(
-      "date || credit || debit || balance\n13-01-2023 || 2000 ||  || 3000\n10-01-2023 || 1000 ||  || 1000"
+      "date || credit || debit || balance\n13-01-2023 || 2000.00 ||  || 3000.00\n10-01-2023 || 1000.00 ||  || 1000.00"
     );
   });
 
@@ -38,7 +38,7 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     account.addTransaction(transTwo);
     account.addTransaction(transThree);
     expect(statement.printStatement()).toEqual(
-      "date || credit || debit || balance\n14-01-2023 ||  || 500 || 2500\n13-01-2023 || 2000 ||  || 3000\n10-01-2023 || 1000 ||  || 1000"
+      "date || credit || debit || balance\n14-01-2023 ||  || 500.00 || 2500.00\n13-01-2023 || 2000.00 ||  || 3000.00\n10-01-2023 || 1000.00 ||  || 1000.00"
     );
   });
 });

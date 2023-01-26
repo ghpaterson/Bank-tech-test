@@ -15,11 +15,13 @@ class Account {
   addTransaction(transaction) {
     this.updateBalance(transaction.amount, transaction.isDebit());
 
+    transaction.amount = parseFloat(transaction.amount).toFixed(2);
+
     this.transactions.push({
       date: transaction.date,
       debit: transaction.isDebit() ? transaction.amount : "",
       credit: transaction.isDebit() ? "" : transaction.amount,
-      balance: this.currentBalance,
+      balance: parseFloat(this.currentBalance).toFixed(2),
     });
   }
 }
