@@ -42,3 +42,63 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     );
   });
 });
+
+describe("Error Handling for missing transaction inputs", () => {
+  it("when transaction type is missing", () => {
+    const account = new Account();
+    const deposit = new Transaction(100, "09-01-2023");
+
+    try {
+      account.addTransaction(deposit);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(
+        "Invalid Transaction: Missing type, amount, date"
+      );
+    }
+  });
+
+  it("when transaction amount is missing", () => {
+    const account = new Account();
+    const deposit = new Transaction("credit", "09-01-2023");
+
+    try {
+      account.addTransaction(deposit);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(
+        "Invalid Transaction: Missing type, amount, date"
+      );
+    }
+  });
+
+  it("when transaction date is missing", () => {
+    const account = new Account();
+    const deposit = new Transaction("credit", 1000);
+
+    try {
+      account.addTransaction(deposit);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(
+        "Invalid Transaction: Missing type, amount, date"
+      );
+    }
+  });
+});
+
+describe("Error Handling for account balance", () => {
+  it("when withdrawal exceeds the current balance", () => {
+    const account = new Account();
+    const deposit = new Transaction("credit", 100, "09-01-2023");
+    const withdrawal = new Transaction("debit", 500, "10-01-2023");
+
+    try {
+      account.addTransaction(withdrawal);
+      account.addTransaction(deposit);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe("Insufficient funds");
+    }
+  });
+});

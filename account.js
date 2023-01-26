@@ -13,6 +13,10 @@ class Account {
   }
 
   addTransaction(transaction) {
+    if (!transaction.type || !transaction.amount || !transaction.date) {
+      throw new Error("Invalid Transaction: Missing type, amount, date");
+    }
+
     this.updateBalance(transaction.amount, transaction.isDebit());
 
     transaction.amount = parseFloat(transaction.amount).toFixed(2);
@@ -23,6 +27,14 @@ class Account {
       credit: transaction.isDebit() ? "" : transaction.amount,
       balance: parseFloat(this.currentBalance).toFixed(2),
     });
+
+    this.checkInsufficientFunds(transaction.amount);
+  }
+
+  checkInsufficientFunds(amount) {
+    if (this.currentBalance + amount < 0) {
+      throw new Error("Insufficient funds");
+    }
   }
 }
 const account = new Account();
