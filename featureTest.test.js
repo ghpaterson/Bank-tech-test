@@ -7,7 +7,7 @@ describe("Prints a formatted bank statement", () => {
     const trans = new Transaction("credit", 1000, "10-01-2023");
     account.addTransaction(trans);
     expect(account.transactions).toEqual([
-      { type: "credit", amount: 1000, date: "10-01-2023" },
+      { date: "10-01-2023", debit: "", credit: 1000, balance: 1000 },
     ]);
   });
 });
