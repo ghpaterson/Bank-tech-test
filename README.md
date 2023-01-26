@@ -1,6 +1,6 @@
 # Bank-tech-test
 
-Simple Javascript banking application allowing users to make transactions and view bank statements
+Second attempt at the Bank-tech-test. Started from scratch to refactor and improve testing and code readablity.
 
 ## Specification
 
@@ -31,8 +31,8 @@ date || credit || debit || balance
 To download and initialise the project:
 
 ```sh
-$ git clone https://github.com/ChrisHutchinson1982/bank_tech_test.git
-$ cd bank_tech_test
+$ https://github.com/ghpaterson/Bank-tech-test.git
+$ cd Bank_tech_test
 $ npm install
 
 ```
@@ -46,7 +46,7 @@ $ node
 
 // Step 1 - require Account class
 
-$ const Account = require("./lib/account");
+$ const Account = require("./account");
 
 // Step 2 - create new instance of account
 
@@ -54,7 +54,7 @@ $ const account = new Account();
 
 // Step 3 - require Transaction class
 
-$ const Transaction = require("./lib/transaction");
+$ const Transaction = require("./transaction");
 
 // Step 4 - create new instance of Transaction(type, amount, date)
   // type should be either "credit" or "debit"
@@ -66,7 +66,7 @@ $ const transaction = new Transaction("credit", 1000, "10/01/2023");
 // Step 5 - add transaction to account instance
   // note: will throw pre-built errors if type, amount, date formats are invalid
 
-$ account.add(transaction);
+$ account.addTransaction(transaction);
 
 // Repeat Steps 4 & 5 with new details as required
 
