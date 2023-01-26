@@ -1,17 +1,22 @@
 const Account = require("./account");
 const Transaction = require("./transaction");
+const Statement = require("./statement");
 
 describe("Adds individual Transactions to the array of Transactions", () => {
   let account;
   beforeEach(() => {
     account = new Account();
   });
+  let statement;
+  beforeEach(() => {
+    statement = new Statement(account.transactions);
+  });
 
   it("A deposit of 1000 made on 10-01-2023", () => {
     const trans = new Transaction("credit", 1000, "10-01-2023");
     account.addTransaction(trans);
-    expect(account.transactions).toEqual([
-      { date: "10-01-2023", debit: "", credit: 1000, balance: 1000 },
+    expect(statement.formatTransactions()).toEqual([
+      "10-01-2023 || 1000 ||  || 1000",
     ]);
   });
 
@@ -20,9 +25,9 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     const transTwo = new Transaction("credit", 2000, "13-01-2023");
     account.addTransaction(transOne);
     account.addTransaction(transTwo);
-    expect(account.transactions).toEqual([
-      { date: "10-01-2023", debit: "", credit: 1000, balance: 1000 },
-      { date: "13-01-2023", debit: "", credit: 2000, balance: 3000 },
+    expect(statement.formatTransactions()).toEqual([
+      "10-01-2023 || 1000 ||  || 1000",
+      "13-01-2023 || 2000 ||  || 3000",
     ]);
   });
 
@@ -33,10 +38,10 @@ describe("Adds individual Transactions to the array of Transactions", () => {
     account.addTransaction(transOne);
     account.addTransaction(transTwo);
     account.addTransaction(transThree);
-    expect(account.transactions).toEqual([
-      { date: "10-01-2023", debit: "", credit: 1000, balance: 1000 },
-      { date: "13-01-2023", debit: "", credit: 2000, balance: 3000 },
-      { date: "14-01-2023", debit: 500, credit: "", balance: 2500 },
+    expect(statement.formatTransactions()).toEqual([
+      "10-01-2023 || 1000 ||  || 1000",
+      "13-01-2023 || 2000 ||  || 3000",
+      "14-01-2023 ||  || 500 || 2500",
     ]);
   });
 });

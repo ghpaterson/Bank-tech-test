@@ -22,5 +22,13 @@ class Account {
     });
   }
 }
+// const account = new Account();
+// const transOne = new Transaction("credit", 1000, "10-01-2023");
+// const transTwo = new Transaction("credit", 2000, "13-01-2023");
+// const transThree = new Transaction("debit", 500, "14-01-2023");
+// account.addTransaction(transOne);
+// account.addTransaction(transTwo);
+// account.addTransaction(transThree);
+// console.log(account.transactions);
 
 module.exports = Account;
